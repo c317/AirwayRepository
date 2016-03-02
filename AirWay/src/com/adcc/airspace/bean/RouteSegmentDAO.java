@@ -1,14 +1,15 @@
+package com.adcc.airspace.bean;
 /**
  * 
  * @author 刘挺  2016-3-1 上午9:58:36
  * 航路段，一条航路包括多个航路段
  *
  */
-public class AirwaySegment {
+public class RouteSegmentDAO {
 	/**
 	 * 航路简称
 	 */
-	private String AirwayName;
+	private String routeName;
 	/**
 	 * 在所属航路中的序号
 	 */
@@ -49,10 +50,10 @@ public class AirwaySegment {
 	 * 航路最大高程
 	 */
 	private int maxAltitude;
-	public AirwaySegment(String airwayName, int order, int startPointID,
+	public RouteSegmentDAO(String routeName, int order, int startPointID,
 			String startLon, String startLat, int endPointID, String endLon,
 			String endLat) {
-		this.AirwayName = airwayName;
+		this.routeName = routeName;
 		this.order = order;
 		this.startPointID = startPointID;
 		this.startLon = getDoubleLon(startLon);
@@ -67,11 +68,11 @@ public class AirwaySegment {
 	private double getDoubleLat(String lat){
 		return Integer.valueOf(lat.substring(1, 3))+Double.valueOf(lat.substring(3, 5))/60+Double.valueOf(lat.substring(5, 7))/3600;
 	}	
-	public String getAirwayName() {
-		return AirwayName;
+	public String getRouteName() {
+		return routeName;
 	}
-	public void setAirwayName(String airwayName) {
-		AirwayName = airwayName;
+	public void setRouteName(String routeName) {
+		this.routeName = routeName;
 	}
 	public int getOrder() {
 		return order;

@@ -1,9 +1,13 @@
+package com.adcc.airspace.app;
 import gov.nasa.worldwind.Model;
 import gov.nasa.worldwind.WorldWind;
 import gov.nasa.worldwind.avlist.AVKey;
 import gov.nasa.worldwind.awt.WorldWindowGLCanvas;
+import gov.nasa.worldwind.event.SelectEvent;
 import gov.nasa.worldwind.util.StatusBar;
 import gov.nasa.worldwindx.examples.LayerPanel;
+import gov.nasa.worldwindx.examples.util.HighlightController;
+import gov.nasa.worldwindx.examples.util.ToolTipController;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -16,6 +20,8 @@ public class WWJAnscent extends JFrame{
 	protected Model modelEarth;
 	protected LayerPanel layerPanel;
 	protected StatusBar statusBar;
+	protected ToolTipController toolTipController;
+    protected HighlightController highlightController;
 	public WWJAnscent(){
 		Dimension canvasSize = new Dimension(800,600);
 		this.worldWindGLCanvas = new WorldWindowGLCanvas();
@@ -32,14 +38,11 @@ public class WWJAnscent extends JFrame{
 		this.statusBar.setEventSource(worldWindGLCanvas);
 		this.add(this.statusBar,BorderLayout.PAGE_END);
 		
+		this.toolTipController = new ToolTipController(this.worldWindGLCanvas, AVKey.DISPLAY_NAME, null);
+        this.highlightController = new HighlightController(this.worldWindGLCanvas, SelectEvent.ROLLOVER);
+        
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setSize(canvasSize);
-	}
-	
-	public static void main(String args[]){
-		String strTitle = "World Wind Java»ù´¡Àà";
-		WWJAnscent WWRun = new WWJAnscent();
-		WWRun.setTitle(strTitle+":"+WWRun.getClass().getName());
 	}
 }
